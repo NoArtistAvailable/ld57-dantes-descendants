@@ -232,6 +232,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: ld57-battlesprite-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13d39db5c620fa049a57b4deb88df91d
+      internalID: 228076143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -251,6 +273,7 @@ TextureImporter:
       ld57-battlesprite-Sheet_2: -2066906089
       ld57-battlesprite-Sheet_3: 631436931
       ld57-battlesprite-Sheet_4: 1642336643
+      ld57-battlesprite-Sheet_5: 228076143
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
