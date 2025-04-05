@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using elZach.Common;
-using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace LD57
@@ -13,6 +11,7 @@ namespace LD57
 	{
 		public Transform squadPanel;
 		public AnimatableChildren cardParent;
+		public Button exitButton;
 		public Unit selectedUnit
 		{
 			get => _selectedUnit;
@@ -83,7 +82,7 @@ namespace LD57
 		{
 			var cardBehaviours = GetComponentsInChildren<CardBehaviour>();
 			// add selection base on circle of hell
-			var potentialCards = CardManager.AllCards.Where(x => x != null).ToList();
+			var potentialCards = CardManager.AllCards.Where(x => x.circleOfHell == PlayerManager.instance.circleOfHell).ToList();
 			for (int i = 0; i < cardBehaviours.Length; i++)
 			{
 				var chosen = potentialCards.GetRandom();
@@ -102,6 +101,8 @@ namespace LD57
 			if (selectedUnit == null)
 			{
 				Debug.Log("Finished Shop Experience :3");
+				GetComponent<Animatable>()?.PlayAt(0);
+				exitButton.GetComponent<Animatable>().PlayAt(1);
 				return;
 			}
 			SetRandomCards();

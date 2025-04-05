@@ -9,8 +9,15 @@ namespace LD57
 	[Serializable]
 	public abstract class Card
 	{
+		public abstract int circleOfHell { get; }
 		public abstract string Name { get; }
 		public abstract string Description { get; }
+	}
+
+	public abstract class ActiveCard : Card
+	{
+		public abstract float cooldown { get; }
+		public abstract void Activate(Unit activator);
 	}
 	
 	public static class CardManager
@@ -46,6 +53,7 @@ namespace LD57
 
 	public class Mod_Healthy : Card, IManipulateHealth
 	{
+		public override int circleOfHell => 1;
 		public override string Name => "Healthy";
 		public override string Description => "Increases Health";
 		public float healthMult = 1.5f;
@@ -56,6 +64,7 @@ namespace LD57
 	}
 	public class Mod_Strong : Card, IManipulatePower
 	{
+		public override int circleOfHell => 1;
 		public override string Name => "Strong";
 		public override string Description => "Increases Power";
 		public float powerMult = 1.3f;
@@ -66,6 +75,7 @@ namespace LD57
 	}
 	public class Mod_Smart : Card, IManipulateSpeed
 	{
+		public override int circleOfHell => 1;
 		public override string Name => "Smart";
 		public override string Description => "Increases Speed";
 		public float speedMult = 1.2f;

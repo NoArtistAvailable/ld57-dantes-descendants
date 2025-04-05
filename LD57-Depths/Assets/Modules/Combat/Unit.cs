@@ -18,12 +18,16 @@ namespace LD57
         
         public float baseSpeed = 1;
         public float Speed => cards.OfType<IManipulateSpeed>()
-            .Aggregate(baseHealth, (current, card) => card.ManipulateSpeed(current));
+            .Aggregate(baseSpeed, (current, card) => card.ManipulateSpeed(current));
         
         public float basePower = 1;
         public float Power => cards.OfType<IManipulatePower>()
-            .Aggregate(baseHealth, (current, card) => card.ManipulatePower(current));
-        
+            .Aggregate(basePower, (current, card) => card.ManipulatePower(current));
+
+        public float baseCrit = 0;
+        public float Crit => cards.OfType<IManipulateCrit>()
+            .Aggregate(baseCrit, (current, card) => card.ManipulateCrit(current));
+
         public List<Card> cards = new List<Card>();
 
         public Unit(string name, int seed)
@@ -45,5 +49,10 @@ namespace LD57
     public interface IManipulatePower
     {
         public float ManipulatePower(float value);
+    }
+
+    public interface IManipulateCrit
+    {
+        public float ManipulateCrit(float value);
     }
 }
