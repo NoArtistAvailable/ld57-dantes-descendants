@@ -4,12 +4,15 @@ using System.Threading;
 using elZach.Common;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace LD57
 {
-    public class UnitCombatBehaviour : MonoBehaviour
+    public class UnitCombatBehaviour : MonoBehaviour, IPointerEnterHandler
     {
+        public static event Action<UnitCombatBehaviour> OnShowCombatUnit;
+        public static event Action<UnitCombatBehaviour> OnDeath;
         public Unit Unit { get; set; }
         public ActiveCard NextActiveCard { get; set; }
         public bool isPlayerSquad;
@@ -69,7 +72,7 @@ namespace LD57
         public void Update()
         {
             if (Unit == null || !CombatManager.Active || currentHealth <= 0 || NextActiveCard == null) return;
-            chargeTime += Time.deltaTime;
+            chargeTime += Time.deltaTime * SpeedCalc;
             abilityMask.padding = Vector3.forward * (1-(chargeTime / NextActiveCard.cooldown)) * abilityMask.rectTransform.rect.width;
             if (chargeTime >= NextActiveCard.cooldown)
             {
@@ -93,6 +96,7 @@ namespace LD57
             animationCancel?.Dispose();
             animationCancel = null;
             animator.Play("Dead");
+            OnDeath?.Invoke(this);
         }
 
         private CancellationTokenSource animationCancel;
@@ -109,5 +113,11 @@ namespace LD57
             animationCancel = null;
             if(animator.current.name == clipName) animator.Play("Idle");
         }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            OnShowCombatUnit?.Invoke(this);
+        }
+
     }
 }

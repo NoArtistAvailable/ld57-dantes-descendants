@@ -2,6 +2,7 @@
 using elZach.Common;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace LD57
 {
@@ -15,23 +16,32 @@ namespace LD57
 		void Start()
 		{
 			UnitShopBehaviour.OnShowShopUnit += Show;
+			UnitCombatBehaviour.OnShowCombatUnit += Show;
 		}
 
 		private void OnDestroy()
 		{
 			UnitShopBehaviour.OnShowShopUnit -= Show;
+			UnitCombatBehaviour.OnShowCombatUnit -= Show;
 		}
 
-		
-		private async void Show(UnitShopBehaviour obj)
+		private void Show(UnitShopBehaviour obj) => Show(obj.unit);
+
+		private void Show(UnitCombatBehaviour obj)
 		{
-			toShow = obj.unit;
+			// dont show if combat is over
+			Show(obj.Unit);
+		}
+
+		private async void Show(Unit unit)
+		{
+			toShow = unit;
 			await anim.Play(0);
-			if (toShow != obj.unit) return;
-			unitNameField.text = $"{obj.unit.name} <size=16> HP: {obj.unit.Health} SPD: {obj.unit.Speed*100}% POW: {obj.unit.Power*100}% CRT: {obj.unit.Crit * 100}% </size>" ;
+			if (toShow != unit) return;
+			unitNameField.text = $"{unit.name} <size=16> HP: {unit.Health} SPD: {unit.Speed*100}% POW: {unit.Power*100}% CRT: {unit.Crit * 100}% </size>" ;
 			
 			cardContentParent.ClearChildren();
-			foreach (var card in obj.unit.cards)
+			foreach (var card in unit.cards)
 			{
 				var clone = Instantiate(cardBehaviourPrefab, cardContentParent);
 				clone.Init(card);
