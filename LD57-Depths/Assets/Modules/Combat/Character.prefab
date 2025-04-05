@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 645316931830610061}
+  - component: {fileID: 872205230026694814}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -32,6 +33,40 @@ Transform:
   - {fileID: 1325649526193137059}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0.524, z: 0}
+--- !u!114 &872205230026694814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40692024799832868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a98bc8b93c2f7429dc3d19f956a521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states:
+  - name: Idle
+    frames:
+    - {fileID: -898223618, guid: 6cecbf0c597f7914b81e262c89c1bfdb, type: 3}
+    - {fileID: 1775236372, guid: 6cecbf0c597f7914b81e262c89c1bfdb, type: 3}
+    time: 0.2
+    randomStart: 1
+  - name: Attack
+    frames:
+    - {fileID: -2066906089, guid: 6cecbf0c597f7914b81e262c89c1bfdb, type: 3}
+    time: 0.2
+    randomStart: 0
+  - name: Hurt
+    frames:
+    - {fileID: 631436931, guid: 6cecbf0c597f7914b81e262c89c1bfdb, type: 3}
+    time: 0.2
+    randomStart: 0
+  - name: Dead
+    frames:
+    - {fileID: 1642336643, guid: 6cecbf0c597f7914b81e262c89c1bfdb, type: 3}
+    time: 0.2
+    randomStart: 0
 --- !u!1 &1037917832901912496
 GameObject:
   m_ObjectHideFlags: 0
