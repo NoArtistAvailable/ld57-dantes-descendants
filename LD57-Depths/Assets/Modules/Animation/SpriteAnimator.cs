@@ -62,6 +62,8 @@ public class SpriteAnimator : MonoBehaviour
         
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
+            position.x += 15;
+            position.width -= 15;
             position.height = EditorGUIUtility.singleLineHeight;
             EditorGUI.PropertyField(position, property.FindPropertyRelative(nameof(Clip.name)));
             position.y += position.height + EditorGUIUtility.standardVerticalSpacing;

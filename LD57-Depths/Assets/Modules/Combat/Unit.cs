@@ -9,6 +9,7 @@ namespace LD57
     public class Unit
     {
         public string name;
+        public int seed = 0;
         public Texture2D faceTexture;
 
         public float baseHealth = 10;
@@ -24,6 +25,13 @@ namespace LD57
             .Aggregate(baseHealth, (current, card) => card.ManipulatePower(current));
         
         public List<Card> cards = new List<Card>();
+
+        public Unit(string name, int seed)
+        {
+            this.name = name;
+            this.seed = seed;
+        }
+        
     }
 
     public interface IManipulateHealth
