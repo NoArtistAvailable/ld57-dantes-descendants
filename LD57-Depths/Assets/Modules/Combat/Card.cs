@@ -17,7 +17,7 @@ namespace LD57
 	public abstract class ActiveCard : Card
 	{
 		public abstract float cooldown { get; }
-		public abstract void Activate(Unit activator);
+		public abstract void Activate(UnitCombatBehaviour unitCombatBehaviour);
 	}
 	
 	public static class CardManager

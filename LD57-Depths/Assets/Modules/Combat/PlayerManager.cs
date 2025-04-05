@@ -9,17 +9,11 @@ namespace LD57
 		public static PlayerManager instance => _instance ??= new PlayerManager();
 		private static PlayerManager _instance = null;
 
-		public static List<Unit> GetOrInitSquad()
+		public static List<Unit> GetOrInitSquad(int circleLevel = -1)
 		{
 			Debug.Log($"{instance.squad.Count}");
 			if (instance.squad.Count > 0) return instance.squad;
-			instance.squad = new List<Unit>()
-			{
-				new Unit(CharacterCreator.RandomNames.GetRandom(), Random.Range(int.MinValue, int.MaxValue)),
-				new Unit(CharacterCreator.RandomNames.GetRandom(), Random.Range(int.MinValue, int.MaxValue)),
-				new Unit(CharacterCreator.RandomNames.GetRandom(), Random.Range(int.MinValue, int.MaxValue)),
-				new Unit(CharacterCreator.RandomNames.GetRandom(), Random.Range(int.MinValue, int.MaxValue))
-			};
+			instance.squad = CharacterCreator.GetSquadAtCircle(circleLevel);
 			Debug.Log($"created debug squad");
 			return instance.squad;
 		}
