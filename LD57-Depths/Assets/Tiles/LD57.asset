@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad3548312a2e6e4983f1f019fe63b27, type: 3}
+  m_Name: LD57
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 5676347281257717240}
+  TileFromGuid:
+    keys:
+    - bad359e9-f55d-413f-b9a4-408d25c08e77
+    values:
+    - {fileID: 5676347281257717240}
+  defaultLayer:
+    name: Default
+    color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    rasterSize:
+      x: 1
+      y: 1
+      z: 1
+    layerObjects: []
+  layers:
+  - name: Walls
+    color: {r: 0.35721496, g: 0.7144299, b: 0.49582934, a: 1}
+    rasterSize:
+      x: 1
+      y: 1
+      z: 1
+    layerObjects:
+    - {fileID: 5676347281257717240}
+  dictionaryFromList:
+    height: 0
+--- !u!114 &5676347281257717240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda8c512f313cec41b7cd18bd9ec2644, type: 3}
+  m_Name: Cube
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 5906224605487901075, guid: 13222315b92ac5440bd32e37b74ef193, type: 3}
+  guid: bad359e9-f55d-413f-b9a4-408d25c08e77
+  behaviours:
+  - {fileID: 11400000, guid: aa3de903e50e69f408ee7cc3dc2657e9, type: 2}
+  boundSize: {x: 1, y: 1, z: 1}
+  offset: {x: 0, y: 0.5, z: 0}
+  offsetRotation: {x: 0, y: 0, z: 0}
+  roundUp: 0
+  calcBoundsButton:
+    height: 0
+  variants: []
+  getNewGuidButton:
+    height: 0
