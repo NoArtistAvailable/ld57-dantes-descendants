@@ -18,9 +18,13 @@ namespace LD57
 			"Enrico", "Fiorenzo", "Gregorio", "Ippolito", "Luciano"
 		};
 
+		public static Texture2D[] RandomFaces => _randomFaces ??= Resources.LoadAll<Texture2D>("Customization/");
+		private static Texture2D[] _randomFaces;
+
 		public static Unit GetRandomUnitAtCircle(int circleLevel)
 		{
 			var newUnit = new Unit(RandomNames.GetRandom(), Random.Range(int.MinValue, int.MaxValue));
+			newUnit.faceTexture = RandomFaces.GetRandom();
 			for (int i = 0; i <= circleLevel; i++)
 			{
 				var chosenCard = CardManager.AllCards.Where(x => x.circleOfHell == i).ToList().GetRandom();

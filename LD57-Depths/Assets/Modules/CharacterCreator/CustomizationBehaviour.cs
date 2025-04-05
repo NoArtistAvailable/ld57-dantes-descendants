@@ -30,7 +30,7 @@ namespace LD57
 				var found = offsets.FirstOrDefault(x => x.sprite == target.sprite);
 				if (found != null)
 				{
-					transform.localPosition = found.positionOffset;
+					transform.localPosition = found.positionOffset * transform.localScale.x * 2f;
 					transform.localRotation = Quaternion.Euler(found.rotationOffset);
 					current = found;
 					renderer.enabled = true;

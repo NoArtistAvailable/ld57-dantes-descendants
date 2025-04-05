@@ -40,6 +40,7 @@ namespace LD57
         public TextMeshProUGUI ability1, ability2;
         public RectMask2D abilityMask;
         public SpriteAnimator animator;
+        public CustomizationBehaviour customization;
         
         public void Init(Unit unit)
         {
@@ -50,6 +51,7 @@ namespace LD57
             cardPower = unit.Power;
             cardSpeed = unit.Speed;
             cardCrit = unit.Crit;
+            customization.renderer.material.SetTexture("_MainTex", unit.faceTexture);
 
             GetNextAbilityCard();
         }
