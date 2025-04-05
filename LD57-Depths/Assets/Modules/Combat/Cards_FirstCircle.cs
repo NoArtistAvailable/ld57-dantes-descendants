@@ -16,7 +16,7 @@ namespace LD57
 		public override void Activate(UnitCombatBehaviour activator)
 		{
 			// Get A Random Enemy
-			var target = CombatManager.GetRandomEnemy(activator);
+			var target = CombatManager.GetHealthiestEnemy(activator);
 			if (!target) return;
 			Debug.Log($"{activator.Unit.name} {Name}s at {target.Unit.name}");
 			target.Damage(activator.PowerCalc * damage);
@@ -34,7 +34,7 @@ namespace LD57
 		public override void Activate(UnitCombatBehaviour activator)
 		{
 			// Get A Random Enemy
-			var target = CombatManager.GetRandomEnemy(activator);
+			var target = CombatManager.GetHealthiestEnemy(activator);
 			if (!target) return;
 			Debug.Log($"{activator.Unit.name} {Name}s at {target.Unit.name}");
 			target.Damage(activator.PowerCalc * damage);
@@ -69,7 +69,7 @@ namespace LD57
 
 		public override void Activate(UnitCombatBehaviour activator)
 		{
-			var target = CombatManager.GetRandomEnemy(activator);
+			var target = CombatManager.GetHealthiestEnemy(activator);
 			if (!target) return;
 			Debug.Log($"{activator.Unit.name} {Name}s at {target.Unit.name}");
 			target.Damage(activator.PowerCalc * damage);

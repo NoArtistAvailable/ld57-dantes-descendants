@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using elZach.Common;
 using UnityEngine;
@@ -32,10 +33,21 @@ namespace LD57
 
 		public static UnitCombatBehaviour GetRandomEnemy(UnitCombatBehaviour unit)
 		{
-			var targets = CombatManager.GetEnemies(unit).ToList();
+			var targets = GetEnemies(unit).ToList();
 			if (targets.Count == 0) return null;
 			var target = targets.GetRandom();
 			return target;
+		}
+		public static UnitCombatBehaviour GetHealthiestEnemy(UnitCombatBehaviour unit)
+		{
+			try
+			{
+				return GetEnemies(unit).MaxBy(x => x.currentHealth);
+			}
+			catch (Exception e)
+			{
+				return null;
+			}
 		}
 		
 		void Start()

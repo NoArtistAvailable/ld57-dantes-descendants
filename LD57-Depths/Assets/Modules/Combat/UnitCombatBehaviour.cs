@@ -34,6 +34,8 @@ namespace LD57
 
         public TextMeshProUGUI name1, name2;
         public RectMask2D healthMask;
+        public TextMeshProUGUI ability1, ability2;
+        public RectMask2D abilityMask;
         public SpriteAnimator animator;
         
         public void Init(Unit unit)
@@ -60,12 +62,15 @@ namespace LD57
                 index %= potentialCards.Count;
                 NextActiveCard = potentialCards[index];
             }
+            ability1.text = NextActiveCard.Name;
+            ability2.text = NextActiveCard.Name;
         }
 
         public void Update()
         {
-            if (Unit == null || !CombatManager.Active || currentHealth <= 0) return;
+            if (Unit == null || !CombatManager.Active || currentHealth <= 0 || NextActiveCard == null) return;
             chargeTime += Time.deltaTime;
+            abilityMask.padding = Vector3.forward * (1-(chargeTime / NextActiveCard.cooldown)) * abilityMask.rectTransform.rect.width;
             if (chargeTime >= NextActiveCard.cooldown)
             {
                 NextActiveCard.Activate(this);
