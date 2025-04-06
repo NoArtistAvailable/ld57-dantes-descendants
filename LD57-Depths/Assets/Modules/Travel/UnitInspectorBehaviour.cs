@@ -8,6 +8,10 @@ namespace LD57
 {
 	public class UnitInspectorBehaviour : MonoBehaviour
 	{
+		public static UnitInspectorBehaviour instance =>
+			_instance.OrSet(ref _instance, FindAnyObjectByType<UnitInspectorBehaviour>);
+		private static UnitInspectorBehaviour _instance;
+		
 		public Animatable anim;
 		public TextMeshProUGUI unitNameField;
 		public Transform cardContentParent;
@@ -33,7 +37,7 @@ namespace LD57
 			Show(obj.Unit);
 		}
 
-		private async void Show(Unit unit)
+		public async void Show(Unit unit)
 		{
 			toShow = unit;
 			await anim.Play(0);

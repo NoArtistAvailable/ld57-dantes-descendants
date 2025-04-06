@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using elZach.Common;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace LD57
@@ -53,6 +54,15 @@ namespace LD57
 			OnlineManager.GetCircleAsync(PlayerManager.instance.circleOfHell);
 		}
 
+		void Update()
+		{
+			var cardSelected = EventSystem.current.currentSelectedGameObject?.GetComponent<CardBehaviour>();
+			if (cardSelected && UnitInspectorBehaviour.instance.toShow != selectedUnit)
+			{
+				UnitInspectorBehaviour.instance.Show(selectedUnit);
+			}
+		}
+
 		private void OnDestroy()
 		{
 			CardBehaviour.onSubmission -= OnCardSubmitted;
@@ -65,11 +75,12 @@ namespace LD57
 			var enemySquad = OnlineManager.FromData(squads.GetRandom());
 			CombatManager.setEnemySquad = enemySquad;
 		}
-		
+
+		private bool isOpen = false;
 		public async void OpenShop()
 		{
-			
-			
+			if (isOpen) return;
+			isOpen = true;
 			var squad = PlayerManager.GetOrInitSquad();
 			unitCards = squadPanel.GetComponentsInChildren<UnitShopBehaviour>();
 			for (int i = 0; i < unitCards.Length; i++)

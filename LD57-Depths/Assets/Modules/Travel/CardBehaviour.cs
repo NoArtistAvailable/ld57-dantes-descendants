@@ -14,13 +14,15 @@ namespace LD57
 		public Card card;
 		public TextMeshProUGUI titleText;
 		public TextMeshProUGUI descriptionText;
-		
+
+		private bool submitted = false;
 
 		public void Init(Card card)
 		{
 			this.card = card;
 			titleText.text = card.Name;
 			descriptionText.text = card.Description;
+			submitted = false;
 		}
 
 		public void Start()
@@ -28,7 +30,12 @@ namespace LD57
 			var eventTrigger = GetComponent<EventTrigger>();
 			if (!eventTrigger) return;
 			var submissionTrigger = eventTrigger.triggers.FirstOrDefault(x => x.eventID == EventTriggerType.Submit);
-			submissionTrigger.callback.AddListener(evt => onSubmission?.Invoke(this));
+			submissionTrigger.callback.AddListener(evt =>
+			{
+				if (submitted) return;
+				submitted = true;
+				onSubmission?.Invoke(this);
+			});
 		}
 	}
 }

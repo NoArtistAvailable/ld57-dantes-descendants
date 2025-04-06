@@ -7,8 +7,6 @@ namespace LD57
 	public class PlayerManager
 	{
 		public static PlayerManager instance => _instance ??= new PlayerManager();
-		
-
 		private static PlayerManager _instance = null;
 
 		public static List<Unit> GetOrInitSquad(int circleLevel = -1)
@@ -20,6 +18,7 @@ namespace LD57
 			else instance.playerUnit = instance.squad[0];
 			return instance.squad;
 		}
+		public static void Reset() => _instance = null;
 		
 		public Unit playerUnit;
 		public int circleOfHell = 0;
