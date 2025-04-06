@@ -90,6 +90,7 @@ namespace LD57
             random = new Unity.Mathematics.Random((uint)unit.seed);
             voice.pitch = random.NextFloat(0.85f, 1.1f);
 
+            foreach(var toInit in unit.cards.OfType<IInitializeOnCombat>()) toInit?.OnCombatStart(this);
             GetNextAbilityCard();
         }
 

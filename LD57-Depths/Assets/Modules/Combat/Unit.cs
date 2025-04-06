@@ -50,9 +50,13 @@ namespace LD57
     {
         public float ManipulatePower(float value);
     }
-
     public interface IManipulateCrit
     {
         public float ManipulateCrit(float value);
+    }
+
+    public interface IInitializeOnCombat
+    {
+        public void OnCombatStart(UnitCombatBehaviour unitCombatBehaviour);
     }
 }
