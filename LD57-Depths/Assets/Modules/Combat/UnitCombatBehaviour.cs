@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Unity.Mathematics;
 
 namespace LD57
 {
@@ -41,6 +42,8 @@ namespace LD57
         public RectMask2D abilityMask;
         public SpriteAnimator animator;
         public CustomizationBehaviour customization;
+        private AudioSource voice;
+        private Unity.Mathematics.Random random;
         
         public void Init(Unit unit)
         {
@@ -52,6 +55,9 @@ namespace LD57
             cardSpeed = unit.Speed;
             cardCrit = unit.Crit;
             customization.renderer.material.SetTexture("_MainTex", unit.faceTexture);
+            voice = GetComponentInChildren<AudioSource>();
+            random = new Unity.Mathematics.Random((uint)unit.seed);
+            voice.pitch = random.NextFloat(0.85f, 1.1f);
 
             GetNextAbilityCard();
         }
@@ -82,6 +88,8 @@ namespace LD57
                 chargeTime = 0;
                 PlayAnimation("Attack", 0.6f);
                 GetNextAbilityCard();
+                voice.clip = AudioLibrary.GetSwear();
+                voice.Play();
             }
         }
 
