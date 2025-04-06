@@ -36,6 +36,7 @@ namespace LD57
             }
             this.unit = unit;
             namePlate.text = unit.name;
+            GetComponentInChildren<CustomizationBehaviourShop>().renderer.texture = this.unit.faceTexture;
         }
 
         void OnEnable()

@@ -16,6 +16,8 @@ namespace LD57
 		#if UNITY_EDITOR
 		public bool stopUploading = false;
 		#endif
+
+		public static List<List<Unit>> potentialEnemySquads = new List<List<Unit>>();
 		
 		public Unit selectedUnit
 		{
@@ -47,13 +49,23 @@ namespace LD57
 		{
 			SetRandomCards();
 			CardBehaviour.onSubmission += OnCardSubmitted;
+			OnlineManager.onGotCircle += GotOnlineSquads;
+			OnlineManager.GetCircleAsync(PlayerManager.instance.circleOfHell);
 		}
 
 		private void OnDestroy()
 		{
 			CardBehaviour.onSubmission -= OnCardSubmitted;
+			OnlineManager.onGotCircle -= GotOnlineSquads;
 		}
 
+		private void GotOnlineSquads(int circle, List<OnlineManager.SquadData> squads)
+		{
+			if (squads == null || squads.Count == 0) return;
+			var enemySquad = OnlineManager.FromData(squads.GetRandom());
+			CombatManager.setEnemySquad = enemySquad;
+		}
+		
 		public void OpenShop()
 		{
 			GetComponent<Animatable>()?.PlayAt(1);
@@ -112,6 +124,7 @@ namespace LD57
 				if(!stopUploading)
 				#endif
 				OnlineManager.PostSquadAsync(PlayerManager.instance.squad, PlayerManager.instance.circleOfHell);
+				CombatManager.setPlayerSquad = PlayerManager.instance.squad;
 				return;
 			}
 			SetRandomCards();

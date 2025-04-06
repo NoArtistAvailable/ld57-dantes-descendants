@@ -93,6 +93,7 @@ namespace LD57
 		public class SquadData
 		{
 			public UnitData[] units;
+			public string name;
 			public float score;
 		}
 
@@ -110,7 +111,8 @@ namespace LD57
 				data.cards = unit.cards.Select(x => x.GetType().Name).ToArray();
 				unitDataList.Add(data);
 			}
-			
+			squadData.units = unitDataList.ToArray();
+			squadData.name = $"{unitDataList[0].name}s squad";
 			return squadData;
 		}
 
@@ -120,7 +122,7 @@ namespace LD57
 			foreach (var unitData in squadData.units)
 			{
 				var unit = new Unit(unitData.name, unitData.seed);
-				var texture = CharacterCreator.unitDataBase.FirstOrDefault(x => x.name == unitData.name)?.faceTexture;
+				var texture = CharacterCreator.unitDataBase != null ? CharacterCreator.unitDataBase.FirstOrDefault(x => x.name == unitData.name)?.faceTexture : null;
 				if (!texture) texture = CharacterCreator.GetRandomFaceFromSeed(unitData.seed);
 				unit.faceTexture = texture;
 				unit.cards = new List<Card>();

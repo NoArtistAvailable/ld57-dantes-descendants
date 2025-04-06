@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using elZach.Common;
 using UnityEngine;
+using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -25,6 +26,7 @@ namespace LD57
 		public UnitCombatBehaviour[] enemySquad { get; set; }
 
 		public int testCircle = 0;
+		public Button startButton, endButton;
 
 		public static IEnumerable<UnitCombatBehaviour> GetEnemies(UnitCombatBehaviour unit) =>
 			unit.isPlayerSquad ? instance.enemySquad.Where(x=>x.currentHealth > 0) : instance.playerSquad.Where(x=>x.currentHealth > 0);
@@ -53,6 +55,36 @@ namespace LD57
 		void Start()
 		{
 			InitCombat();
+			startButton.onClick.AddListener(() => Active = true);
+			endButton.onClick.AddListener(LevelManager.instance.LoadNext);
+			UnitCombatBehaviour.OnDeath += OnUnitDied;
+		}
+
+		private void OnUnitDied(UnitCombatBehaviour unitBehaviour)
+		{
+			var playerDied = playerSquad.All(x => x.currentHealth <= 0);
+			var enemyDied = enemySquad.All(x => x.currentHealth <= 0);
+			if (playerDied)
+			{
+				PlayerManager.instance.Lives--;
+			}
+
+			if (enemyDied)
+			{
+				PlayerManager.instance.Wins++;
+			}
+			if (playerDied || enemyDied) EndCombat();
+		}
+
+		public void EndCombat()
+		{
+			if (PlayerManager.instance.squad == null || PlayerManager.instance.squad.Count == 0)
+			{
+				PlayerManager.instance.squad = setPlayerSquad;
+				PlayerManager.instance.playerUnit = setPlayerSquad[0];
+			}
+			PlayerManager.instance.circleOfHell++;
+			endButton.GetComponent<Animatable>().PlayAt(1);
 		}
 		
 		public void InitCombat()
@@ -75,8 +107,6 @@ namespace LD57
 				enemySquad[i].Init(setEnemySquad[i]);
 				enemySquad[i].chargeTime = 0.3f - i * 0.1f;
 			}
-
-			Active = true;
 		}
 		#if UNITY_EDITOR
 		[CustomEditor(typeof(CombatManager))]

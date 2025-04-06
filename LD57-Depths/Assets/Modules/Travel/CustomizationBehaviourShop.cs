@@ -11,7 +11,7 @@ namespace LD57
 		public List<SpriteOffset> offsets = new List<SpriteOffset>();
 		public float multiplier = 100;
 		public SpriteOffset current { get; set; }
-		private new RawImage renderer;
+		public new RawImage renderer;
 
 		private void OnEnable()
 		{

@@ -7,6 +7,8 @@ namespace LD57
 	public class PlayerManager
 	{
 		public static PlayerManager instance => _instance ??= new PlayerManager();
+		
+
 		private static PlayerManager _instance = null;
 
 		public static List<Unit> GetOrInitSquad(int circleLevel = -1)
@@ -20,9 +22,13 @@ namespace LD57
 		}
 		
 		public Unit playerUnit;
-		
 		public int circleOfHell = 0;
+		public int Lives = 3;
+		public int Wins = 0;
 		public List<Unit> squad = new List<Unit>();
-		
+
+		public static string[] CircleNames =
+			{ "Limbo", "Lust", "Gluttony", "Greed", "Wrath", "Heresy", "Violence", "Fraud", "Treachery" };
+
 	}
 }
