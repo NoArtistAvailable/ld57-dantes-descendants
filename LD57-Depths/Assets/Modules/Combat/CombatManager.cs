@@ -60,6 +60,11 @@ namespace LD57
 			UnitCombatBehaviour.OnDeath += OnUnitDied;
 		}
 
+		private void OnDestroy()
+		{
+			UnitCombatBehaviour.OnDeath -= OnUnitDied;
+		}
+
 		private void OnUnitDied(UnitCombatBehaviour unitBehaviour)
 		{
 			var playerDied = playerSquad.All(x => x.currentHealth <= 0);

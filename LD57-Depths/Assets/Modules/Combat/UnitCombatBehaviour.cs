@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using elZach.Common;
@@ -7,6 +8,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Unity.Mathematics;
+using UnityEngine.Rendering;
 
 namespace LD57
 {
@@ -14,6 +16,7 @@ namespace LD57
     {
         public static event Action<UnitCombatBehaviour> OnShowCombatUnit;
         public static event Action<UnitCombatBehaviour> OnDeath;
+        public event Action<UnitCombatBehaviour, ActiveCard> OnCardActivated;
         public Unit Unit { get; set; }
         public ActiveCard NextActiveCard { get; set; }
         public bool isPlayerSquad;
@@ -31,10 +34,38 @@ namespace LD57
         public float chargeTime { get; set; }
 
         private float cardPower, cardSpeed, cardCrit;
+
+        public float PowerCalc
+        {
+            get
+            {
+                var power = cardPower;
+                foreach (var func in powerChanges) power = func.Invoke(power);
+                return power;
+            }
+        }
+        public List<Func<float, float>> powerChanges = new List<Func<float, float>>();
         
-        public float PowerCalc => cardPower;
-        public float SpeedCalc => cardSpeed;
-        public float CritCalc => cardCrit;
+        public float SpeedCalc
+        {
+            get
+            {
+                var value = cardSpeed;
+                foreach (var func in speedChanges) value = func.Invoke(value);
+                return value;
+            }
+        }
+        public List<Func<float, float>> speedChanges = new List<Func<float, float>>();
+        public float CritCalc
+        {
+            get
+            {
+                var value = cardCrit;
+                foreach (var func in critChanges) value = func.Invoke(value);
+                return value;
+            }
+        }
+        public List<Func<float, float>> critChanges = new List<Func<float, float>>();
 
         public TextMeshProUGUI name1, name2;
         public RectMask2D healthMask;
@@ -85,6 +116,7 @@ namespace LD57
             if (chargeTime >= NextActiveCard.cooldown)
             {
                 NextActiveCard.Activate(this);
+                OnCardActivated?.Invoke(this, NextActiveCard);
                 chargeTime = 0;
                 PlayAnimation("Attack", 0.6f);
                 GetNextAbilityCard();
@@ -98,6 +130,11 @@ namespace LD57
             currentHealth -= damage;
             if (currentHealth <= 0) Die();
             else PlayAnimation("Hurt", 0.36f);
+        }
+        public void Heal(float value)
+        {
+            if (currentHealth <= 0) return;
+            currentHealth += value;
         }
 
         public void Die()
@@ -129,5 +166,6 @@ namespace LD57
             OnShowCombatUnit?.Invoke(this);
         }
 
+        
     }
 }

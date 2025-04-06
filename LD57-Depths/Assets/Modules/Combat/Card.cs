@@ -51,38 +51,4 @@ namespace LD57
 		}
 		public static List<Card> AllCards = GetAllCardTypes();
 	}
-
-	public class Mod_Healthy : Card, IManipulateHealth
-	{
-		public override int circleOfHell => 1;
-		public override string Name => "Healthy";
-		public override string Description => "Increases Health";
-		public float healthMult = 1.5f;
-		public float ManipulateHealth(float value)
-		{
-			return value * healthMult;
-		}
-	}
-	public class Mod_Strong : Card, IManipulatePower
-	{
-		public override int circleOfHell => 1;
-		public override string Name => "Strong";
-		public override string Description => "Increases Power";
-		public float powerMult = 1.3f;
-		public float ManipulatePower(float value)
-		{
-			return value * powerMult;
-		}
-	}
-	public class Mod_Smart : Card, IManipulateSpeed
-	{
-		public override int circleOfHell => 1;
-		public override string Name => "Smart";
-		public override string Description => "Increases Speed";
-		public float speedMult = 1.2f;
-		public float ManipulateSpeed(float value)
-		{
-			return value * speedMult;
-		}
-	}
 }
