@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 24831255}
   - component: {fileID: 24831254}
   m_Layer: 0
-  m_Name: LevelLabel
+  m_Name: LevelLabel_Treachery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 42603716}
   - component: {fileID: 42603715}
   m_Layer: 0
-  m_Name: LevelLabel
+  m_Name: LevelLabel_Wrath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1174,7 +1174,7 @@ GameObject:
   - component: {fileID: 369198573}
   - component: {fileID: 369198572}
   m_Layer: 0
-  m_Name: LevelLabel
+  m_Name: LevelLabel_Gluttony
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2593,7 +2593,7 @@ GameObject:
   - component: {fileID: 853790781}
   - component: {fileID: 853790780}
   m_Layer: 0
-  m_Name: LevelLabel
+  m_Name: LevelLabel_Lust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3474,7 +3474,7 @@ GameObject:
   - component: {fileID: 1328971244}
   - component: {fileID: 1328971243}
   m_Layer: 0
-  m_Name: LevelLabel
+  m_Name: LevelLabel_Greed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3736,7 +3736,7 @@ GameObject:
   - component: {fileID: 1393647597}
   - component: {fileID: 1393647596}
   m_Layer: 0
-  m_Name: LevelLabel
+  m_Name: LevelLabel_Violence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3836,7 +3836,7 @@ GameObject:
   - component: {fileID: 1418598660}
   - component: {fileID: 1418598659}
   m_Layer: 0
-  m_Name: LevelLabel
+  m_Name: LevelLabel_Heresy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4702,7 +4702,7 @@ GameObject:
   - component: {fileID: 1612576446}
   - component: {fileID: 1612576445}
   m_Layer: 0
-  m_Name: LevelLabel
+  m_Name: LevelLabel_Limbo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5320,7 +5320,7 @@ GameObject:
   - component: {fileID: 2113274100}
   - component: {fileID: 2113274099}
   m_Layer: 0
-  m_Name: LevelLabel
+  m_Name: LevelLabel_Fraud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
