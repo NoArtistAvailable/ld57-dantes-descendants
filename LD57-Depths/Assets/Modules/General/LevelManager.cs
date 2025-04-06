@@ -16,6 +16,7 @@ namespace LD57
         
         public Image transitionImage;
         public float duration = 0.6f;
+        public AudioSource inAudio, outAudio;
 
         void Start()
         {
@@ -39,6 +40,7 @@ namespace LD57
 
         public IEnumerator TransitionIn()
         {
+            inAudio.Play();
             transitionImage.gameObject.SetActive(true);
             float progress = 0f;
             while (progress <= 1f)
@@ -52,6 +54,7 @@ namespace LD57
 
         public IEnumerator TransitionOut()
         {
+            outAudio.Play();
             transitionImage.gameObject.SetActive(true);
             float progress = 0f;
             while (progress <= 1f)
