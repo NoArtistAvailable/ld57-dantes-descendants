@@ -17,6 +17,7 @@ namespace LD57
         public static event Action<UnitCombatBehaviour> OnShowCombatUnit;
         public static event Action<UnitCombatBehaviour> OnDeath;
         public static event Action<UnitCombatBehaviour, float> OnHurt, OnHeal;
+        public event Action<float> OnIGotHurt, OnIGotHeal;
         public event Action<UnitCombatBehaviour, ActiveCard> OnCardActivated;
         public event Action OnCrit;
         public Unit Unit { get; set; }
@@ -74,6 +75,16 @@ namespace LD57
             }
         }
         public List<Func<float, float>> critChanges = new List<Func<float, float>>();
+        public float ReceiveDamageCalc
+        {
+            get
+            {
+                var value = 1f;
+                foreach (var func in receiveDamageChanges) value = func.Invoke(value);
+                return value;
+            }
+        }
+        public List<Func<float, float>> receiveDamageChanges = new List<Func<float, float>>();
 
         public TextMeshProUGUI name1, name2;
         public RectMask2D healthMask;
@@ -136,11 +147,13 @@ namespace LD57
 
         public void Damage(float damage)
         {
+            damage *= ReceiveDamageCalc;
             currentHealth -= damage;
             if (currentHealth <= 0) Die();
             else
             {
                 PlayAnimation("Hurt", 0.36f);
+                OnIGotHurt?.Invoke(damage);
                 OnHurt?.Invoke(this, damage);
             }
         }
@@ -148,6 +161,7 @@ namespace LD57
         {
             if (currentHealth <= 0) return;
             currentHealth += value;
+            OnIGotHeal?.Invoke(value);
             OnHeal?.Invoke(this, value);
         }
 
