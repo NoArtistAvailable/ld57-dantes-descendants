@@ -62,8 +62,9 @@ namespace LD57
 		public float value = 0.3f;
 		public override void Activate(UnitCombatBehaviour unitCombatBehaviour)
 		{
-			var friends = CombatManager.GetFriends(unitCombatBehaviour);
-			var target = friends.Where(x => x != unitCombatBehaviour).ToList().GetRandom();
+			var friends = CombatManager.GetFriends(unitCombatBehaviour).Where(x => x != unitCombatBehaviour).ToList();
+			if (friends.Count == 0) return;
+			var target = friends.GetRandom();
 			target.powerChanges.Add((original) => original + value);
 		}
 	}

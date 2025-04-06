@@ -66,15 +66,21 @@ namespace LD57
 			CombatManager.setEnemySquad = enemySquad;
 		}
 		
-		public void OpenShop()
+		public async void OpenShop()
 		{
-			GetComponent<Animatable>()?.PlayAt(1);
+			
+			
 			var squad = PlayerManager.GetOrInitSquad();
 			unitCards = squadPanel.GetComponentsInChildren<UnitShopBehaviour>();
 			for (int i = 0; i < unitCards.Length; i++)
 			{
 				unitCards[i].Init(squad[i]);
 			}
+			
+			await squadPanel.GetComponent<Animatable>().Play(1);
+			await WebTask.Delay(0.3f);
+			await GetComponent<Animatable>().Play(1);
+			await WebTask.Delay(0.6f);
 			var next = GetNextUnit(selectedUnit);
 			if(next!=null) Debug.Log($"Selected ({PlayerManager.instance.squad.IndexOf(next)}) {next.name}");
 			else Debug.Log("no next character??!");

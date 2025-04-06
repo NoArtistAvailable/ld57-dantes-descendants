@@ -5,35 +5,41 @@ using UnityEngine;
 namespace LD57
 {
 	// GLUTTONY
-	public class Mod_Ravenous : Card, IManipulatePower
+	public class Mod_Ravenous : Card, IInitializeOnCombat
 	{
 		public override int circleOfHell => 2;
 		public override string Name => "Ravenous";
-		public override string Description => "Power increases as health decreases (up to 60% boost at low health)";
-		public float powerBoostMax = 0.6f; // 60% boost at minimum health
-
-		public float ManipulatePower(float value)
+		public override string Description => $"Power increases as health decreases (up to {powerBoostMax*100}% boost at low health)";
+		public float powerBoostMax = 1.2f;
+		
+		public void OnCombatStart(UnitCombatBehaviour unitCombatBehaviour)
 		{
-			// Calculate power boost based on current health percentage
-			UnitCombatBehaviour behaviour = CombatManager.instance.playerSquad.FirstOrDefault(x => x.Unit.cards.Contains(this));
-			if (behaviour == null) return value;
-			
-			float healthPercent = behaviour.currentHealth / behaviour.Unit.Health;
-			float boost = Mathf.Lerp(powerBoostMax, 0f, healthPercent);
-			return value * (1f + boost);
+			float ManipulatePower(float value)
+			{
+				float healthPercent = unitCombatBehaviour.currentHealth / unitCombatBehaviour.Unit.Health;
+				float boost = Mathf.Lerp(powerBoostMax, 0f, healthPercent);
+				return value * (1f + boost);
+			}
+			unitCombatBehaviour.powerChanges.Add(ManipulatePower);
 		}
 	}
 
-	public class Mod_Bloated : Card, IManipulateHealth
+	public class Mod_Bloated : Card, IManipulateHealth, IManipulateSpeed
 	{
 		public override int circleOfHell => 2;
 		public override string Name => "Bloated";
-		public override string Description => "Increases max health by 40% but decreases speed by 15%";
-		public float healthMult = 1.4f;
+		public override string Description => $"Increases max health by {healthMult*100}% but decreases speed by {speedMult*100}%";
+		public float healthMult = 0.4f;
+		public float speedMult = 0.15f;
 
 		public float ManipulateHealth(float value)
 		{
-			return value * healthMult;
+			return value * ( 1 + healthMult);
+		}
+
+		public float ManipulateSpeed(float value)
+		{
+			return value * (1 - speedMult);
 		}
 	}
 

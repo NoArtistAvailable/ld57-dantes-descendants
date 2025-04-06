@@ -54,6 +54,7 @@ namespace LD57
 		
 		void Start()
 		{
+			Active = false;
 			InitCombat();
 			startButton.onClick.AddListener(() => Active = true);
 			endButton.onClick.AddListener(LevelManager.instance.LoadNext);
@@ -90,6 +91,7 @@ namespace LD57
 			}
 			PlayerManager.instance.circleOfHell++;
 			endButton.GetComponent<Animatable>().PlayAt(1);
+			Active = false;
 		}
 		
 		public void InitCombat()

@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Unity.Mathematics;
-using UnityEngine.Rendering;
+using Random = UnityEngine.Random;
 
 namespace LD57
 {
@@ -16,7 +16,9 @@ namespace LD57
     {
         public static event Action<UnitCombatBehaviour> OnShowCombatUnit;
         public static event Action<UnitCombatBehaviour> OnDeath;
+        public static event Action<UnitCombatBehaviour, float> OnHurt, OnHeal;
         public event Action<UnitCombatBehaviour, ActiveCard> OnCardActivated;
+        public event Action OnCrit;
         public Unit Unit { get; set; }
         public ActiveCard NextActiveCard { get; set; }
         public bool isPlayerSquad;
@@ -41,6 +43,12 @@ namespace LD57
             {
                 var power = cardPower;
                 foreach (var func in powerChanges) power = func.Invoke(power);
+                var crit = random.NextFloat() < CritCalc;
+                if (crit)
+                {
+                    power *= 2f;
+                    OnCrit?.Invoke();
+                }
                 return power;
             }
         }
@@ -130,12 +138,17 @@ namespace LD57
         {
             currentHealth -= damage;
             if (currentHealth <= 0) Die();
-            else PlayAnimation("Hurt", 0.36f);
+            else
+            {
+                PlayAnimation("Hurt", 0.36f);
+                OnHurt?.Invoke(this, damage);
+            }
         }
         public void Heal(float value)
         {
             if (currentHealth <= 0) return;
             currentHealth += value;
+            OnHeal?.Invoke(this, value);
         }
 
         public void Die()
