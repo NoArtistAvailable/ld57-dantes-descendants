@@ -18,7 +18,8 @@ namespace LD57
 			return instance.squad;
 		}
 		
-		public string name = "Anon";
+		public Unit playerUnit;
+		
 		public int circleOfHell = 0;
 		public List<Unit> squad = new List<Unit>();
 		
