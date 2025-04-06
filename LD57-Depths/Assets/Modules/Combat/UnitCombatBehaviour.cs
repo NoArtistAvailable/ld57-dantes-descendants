@@ -36,7 +36,7 @@ namespace LD57
         private float _currentHealth;
         public float chargeTime { get; set; }
 
-        private float cardPower, cardSpeed, cardCrit;
+        public float cardHealth, cardPower, cardSpeed, cardCrit;
 
         public float PowerCalc
         {
@@ -101,6 +101,7 @@ namespace LD57
             name1.text = unit.name;
             name2.text = unit.name;
             currentHealth = unit.Health;
+            cardHealth = unit.Health;
             cardPower = unit.Power;
             cardSpeed = unit.Speed;
             cardCrit = unit.Crit;
