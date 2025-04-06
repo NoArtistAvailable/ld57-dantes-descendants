@@ -23,6 +23,5 @@ namespace LD57
 		public int circleOfHell = 0;
 		public List<Unit> squad = new List<Unit>();
 		
-		
 	}
 }

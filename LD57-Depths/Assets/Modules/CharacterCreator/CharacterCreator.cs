@@ -62,7 +62,7 @@ namespace LD57
 				name = PlayerManager.instance.playerUnit.name,
 				seed = PlayerManager.instance.playerUnit.seed,
 				imageBase64 = base64Tex,
-				score = DateTime.Now.Minute + DateTime.Now.Hour * 60 + DateTime.Now.DayOfYear * 60 * 24 + DateTime.Now.Year * 60 * 24 * 356
+				score = OnlineManager.DateToScore()
 			};
 			
 			OnlineManager.PostSinnerAsync(data);
@@ -84,10 +84,16 @@ namespace LD57
 
 		public static List<Unit> unitDataBase;
 
+		public static Texture2D GetRandomFaceFromSeed(int seed)
+		{
+			var random = new Unity.Mathematics.Random((uint)seed);
+			return RandomFaces[random.NextInt(0, RandomFaces.Length)];
+		}
+		
 		public static Unit GetRandomUnitAtCircle(int circleLevel)
 		{
 			var newUnit = new Unit(RandomNames.GetRandom(), Random.Range(int.MinValue, int.MaxValue));
-			newUnit.faceTexture = RandomFaces.GetRandom();
+			newUnit.faceTexture = GetRandomFaceFromSeed(newUnit.seed);
 			for (int i = 0; i <= circleLevel; i++)
 			{
 				var chosenCard = CardManager.AllCards.Where(x => x.circleOfHell == i).ToList().GetRandom();

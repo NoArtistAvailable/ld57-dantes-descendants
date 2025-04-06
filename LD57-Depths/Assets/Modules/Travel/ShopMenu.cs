@@ -12,6 +12,11 @@ namespace LD57
 		public Transform squadPanel;
 		public AnimatableChildren cardParent;
 		public Button exitButton;
+		
+		#if UNITY_EDITOR
+		public bool stopUploading = false;
+		#endif
+		
 		public Unit selectedUnit
 		{
 			get => _selectedUnit;
@@ -103,6 +108,10 @@ namespace LD57
 				Debug.Log("Finished Shop Experience :3");
 				GetComponent<Animatable>()?.PlayAt(0);
 				exitButton.GetComponent<Animatable>().PlayAt(1);
+				#if UNITY_EDITOR
+				if(!stopUploading)
+				#endif
+				OnlineManager.PostSquadAsync(PlayerManager.instance.squad, PlayerManager.instance.circleOfHell);
 				return;
 			}
 			SetRandomCards();

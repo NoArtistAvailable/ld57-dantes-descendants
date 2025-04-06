@@ -22,12 +22,13 @@ namespace LD57
 	
 	public static class CardManager
 	{
+		public static Type[] cardTypes;
 		private static List<Card> GetAllCardTypes()
 		{
 			List<Card> allCards = new List<Card>();
             
 			// Get all types that inherit from Card
-			Type[] cardTypes = Assembly.GetAssembly(typeof(Card))
+			cardTypes = Assembly.GetAssembly(typeof(Card))
 				.GetTypes()
 				.Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(Card)))
 				.ToArray();
