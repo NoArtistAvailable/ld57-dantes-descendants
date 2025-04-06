@@ -29,6 +29,11 @@ namespace LD57
 
         public void Init(Unit unit)
         {
+            if (unit == null)
+            {
+                Debug.LogWarning("NULL UNIT!", this);
+                return;
+            }
             this.unit = unit;
             namePlate.text = unit.name;
         }

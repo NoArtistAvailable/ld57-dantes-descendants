@@ -18,6 +18,9 @@ namespace LD57
 		public PaintingCanvas painter;
 		public TMP_InputField nameInput;
 		public Button exitButton;
+		#if UNITY_EDITOR
+		public bool dontUpload = false;		
+		#endif
 
 		void Start()
 		{
@@ -27,9 +30,7 @@ namespace LD57
 			{
 				exitButton.interactable = !string.IsNullOrEmpty(value);
 			});
-			
-			OnlineManager.onGotSinners += GetOnlineData;
-			OnlineManager.GetSinnersAsync();
+			GetOnlineDataIfNecessary();
 		}
 
 		private void OnDestroy()
@@ -37,7 +38,15 @@ namespace LD57
 			OnlineManager.onGotSinners -= GetOnlineData;
 		}
 
-		private void GetOnlineData(List<OnlineManager.SinnerData> entries)
+		public static void GetOnlineDataIfNecessary()
+		{
+			if (unitDataBase == null)
+			{
+				OnlineManager.onGotSinners += GetOnlineData;
+				OnlineManager.GetSinnersAsync();
+			}
+		}
+		private static void GetOnlineData(List<OnlineManager.SinnerData> entries)
 		{
 			Debug.Log($"Got {entries.Count} entries");
 			unitDataBase = new List<Unit>();
@@ -49,6 +58,8 @@ namespace LD57
 				};
 				unitDataBase.Add(unit);
 			}
+			unusedPlayerUnits = new List<Unit>();
+			unusedPlayerUnits.AddRange(unitDataBase);
 		}
 
 		private void UploadCharacter()
@@ -64,8 +75,12 @@ namespace LD57
 				imageBase64 = base64Tex,
 				score = OnlineManager.DateToScore()
 			};
-			
+#if UNITY_EDITOR
+			if (!dontUpload)			
+#endif
 			OnlineManager.PostSinnerAsync(data);
+			
+			LevelManager.instance.LoadNext();
 		}
 
 		public static string[] RandomNames =
@@ -83,6 +98,7 @@ namespace LD57
 		private static Texture2D[] _randomFaces;
 
 		public static List<Unit> unitDataBase;
+		private static List<Unit> unusedPlayerUnits;
 
 		public static Texture2D GetRandomFaceFromSeed(int seed)
 		{
@@ -92,8 +108,11 @@ namespace LD57
 		
 		public static Unit GetRandomUnitAtCircle(int circleLevel)
 		{
-			var newUnit = new Unit(RandomNames.GetRandom(), Random.Range(int.MinValue, int.MaxValue));
-			newUnit.faceTexture = GetRandomFaceFromSeed(newUnit.seed);
+			var chanceForPlayerCharacter = unusedPlayerUnits?.Count > 0 && Random.value < 0.66f;
+			var databaseUnit = chanceForPlayerCharacter ? unusedPlayerUnits.GetRandom() : null;
+			if (databaseUnit != null) unusedPlayerUnits.Remove(databaseUnit);
+			var newUnit = databaseUnit != null ? new Unit(databaseUnit.name, databaseUnit.seed) : new Unit(RandomNames.GetRandom(), Random.Range(int.MinValue, int.MaxValue));
+			newUnit.faceTexture = databaseUnit != null ? databaseUnit.faceTexture :GetRandomFaceFromSeed(newUnit.seed);
 			for (int i = 0; i <= circleLevel; i++)
 			{
 				var chosenCard = CardManager.AllCards.Where(x => x.circleOfHell == i).ToList().GetRandom();

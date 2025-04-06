@@ -2505,6 +2505,7 @@ MonoBehaviour:
   squadPanel: {fileID: 504445105}
   cardParent: {fileID: 1497844475}
   exitButton: {fileID: 1561321673}
+  stopUploading: 0
 --- !u!114 &1497844475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3311,6 +3312,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8364191113152444953, guid: 109db02d93707e044be19c6f533ca5cb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364191113152444953, guid: 109db02d93707e044be19c6f533ca5cb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 105.45001
+      objectReference: {fileID: 0}
+    - target: {fileID: 9018525459913258547, guid: 109db02d93707e044be19c6f533ca5cb, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9018525459913258547, guid: 109db02d93707e044be19c6f533ca5cb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9018525459913258547, guid: 109db02d93707e044be19c6f533ca5cb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3498,6 +3519,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6822484057649168764, guid: 419e61910fe2df74ba6ecfd45ac1e1bf, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183435596160487102, guid: 419e61910fe2df74ba6ecfd45ac1e1bf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183435596160487102, guid: 419e61910fe2df74ba6ecfd45ac1e1bf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183435596160487102, guid: 419e61910fe2df74ba6ecfd45ac1e1bf, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7425338889567995794, guid: 419e61910fe2df74ba6ecfd45ac1e1bf, type: 3}

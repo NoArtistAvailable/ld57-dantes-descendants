@@ -14,7 +14,8 @@ namespace LD57
 			Debug.Log($"{instance.squad.Count}");
 			if (instance.squad.Count > 0) return instance.squad;
 			instance.squad = CharacterCreator.GetSquadAtCircle(circleLevel);
-			Debug.Log($"created debug squad");
+			if (instance.playerUnit != null) instance.squad[0] = instance.playerUnit;
+			else instance.playerUnit = instance.squad[0];
 			return instance.squad;
 		}
 		
