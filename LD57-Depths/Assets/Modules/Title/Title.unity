@@ -754,7 +754,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 483, y: -320}
-  m_SizeDelta: {x: 259.5, y: 50}
+  m_SizeDelta: {x: 412.9, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &594674788
 MonoBehaviour:
@@ -776,7 +776,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: music by odrez
+  m_text: music by odd redesign
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98bff17ad9b7e9f4baec7b44d0c3c683, type: 2}
   m_sharedMaterial: {fileID: -5137579183036148502, guid: 98bff17ad9b7e9f4baec7b44d0c3c683, type: 2}

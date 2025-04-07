@@ -51,7 +51,7 @@ namespace LD57
     {
         public override int circleOfHell => 2;
         public override string Name => "Blame Deflection";
-        public override string Description => $"Deals {healthScaling*100}% of max health as damage";
+        public override string Description => $"Deals {healthScaling*100}% of max health as damage every {cooldown}s";
         public override float cooldown => 6f;
         public float healthScaling = 0.3f;
 

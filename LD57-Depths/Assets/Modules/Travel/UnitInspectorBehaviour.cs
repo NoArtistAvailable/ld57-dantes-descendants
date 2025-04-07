@@ -41,7 +41,7 @@ namespace LD57
 		{
 			toShow = unit;
 			await anim.Play(0);
-			if (toShow != unit) return;
+			if (toShow != unit || toShow == null || !unitNameField) return;
 			unitNameField.text = $"{unit.name} <size=16> HP: {unit.Health} SPD: {unit.Speed*100}% POW: {unit.Power*100}% CRT: {unit.Crit * 100}% </size>" ;
 			
 			cardContentParent.ClearChildren();

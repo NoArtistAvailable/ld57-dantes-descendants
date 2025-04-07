@@ -110,7 +110,11 @@ namespace LD57
         
         public void OnCombatStart(UnitCombatBehaviour behaviour)
         {
-            behaviour.OnIGotHeal += (value, source) => behaviour.Damage(value, behaviour);
+            behaviour.OnIGotHeal += (value, source) =>
+            {
+                if (behaviour == source) return;
+                behaviour.Damage(value, behaviour);
+            };
         }
     }
     

@@ -52,6 +52,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerSquad: 0
+  cardHealth: 0
+  cardPower: 0
+  cardSpeed: 0
+  cardCrit: 0
   name1: {fileID: 743881149591698160}
   name2: {fileID: 1188217786830636813}
   healthMask: {fileID: 4772703900717786660}
@@ -60,6 +64,8 @@ MonoBehaviour:
   abilityMask: {fileID: 1851578458791520763}
   animator: {fileID: 872205230026694814}
   customization: {fileID: 2470853204059627364}
+  random:
+    state: 0
 --- !u!114 &872205230026694814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +98,11 @@ MonoBehaviour:
   - name: Dead
     frames:
     - {fileID: 228076143, guid: 6cecbf0c597f7914b81e262c89c1bfdb, type: 3}
+    time: 0.2
+    randomStart: 0
+  - name: Buff
+    frames:
+    - {fileID: -2066906089, guid: 6cecbf0c597f7914b81e262c89c1bfdb, type: 3}
     time: 0.2
     randomStart: 0
 --- !u!65 &4917997697635492376

@@ -52,7 +52,8 @@ namespace LD57
         public override string Name => "Rejuvenate";
         public override string Description => $"Heals all allies for ({healAmount}) and increases their speed by {speedBoost*100}% for {boostDuration}s every {cooldown}s";
         public override float cooldown => 4f;
-        
+        public override string animName => "Buff";
+
         public float healAmount = 2f;
         public float speedBoost = 0.2f;
         public float boostDuration = 3f;
@@ -110,8 +111,9 @@ namespace LD57
         public override string Name => "Martyrdom";
         public override string Description => $"When an ally takes damage, you take {damageTransfer*100}% of it but ally's damage is reduced by {damageReduction*100}%";
         private float damageTransfer = 0.1f;
-        private float damageReduction = 0.5f;
-        
+        private float damageReduction = 0.25f;
+
+        public static int happenedLastAtFrame = 0;
         public void OnCombatStart(UnitCombatBehaviour behaviour)
         {
             if (behaviour == null) return;
@@ -122,13 +124,14 @@ namespace LD57
             foreach (var ally in allies)
             {
                 ally.OnIGotHurt += (damage, source) => {
-                    if (behaviour.currentHealth <= 0) return;
-                    
+                    if (behaviour.currentHealth <= 0 || source == behaviour) return;
+                    if (happenedLastAtFrame == Time.frameCount) return;
                     // Transfer portion of damage to self
                     float transferredDamage = damage * damageTransfer;
                     Debug.Log($"{behaviour.Unit.name}'s {Name} transfers {transferredDamage} damage from {ally.Unit.name}");
                     
                     behaviour.Damage(transferredDamage, behaviour);
+                    happenedLastAtFrame = Time.frameCount;
                 };
                 
                 // Reduce damage to allies
@@ -161,6 +164,7 @@ namespace LD57
         public override string Name => "Forceful Suggestion";
         public override string Description => $"Immediately activates another friend every {cooldown}s";
         public override float cooldown => 3f;
+        public override string animName => "Buff";
         
         public override void Activate(UnitCombatBehaviour activator)
         {
@@ -225,7 +229,11 @@ namespace LD57
         public void OnCombatStart(UnitCombatBehaviour behaviour)
         {
             foreach (var friend in CombatManager.GetFriends(behaviour))
-                friend.OnIDied += () => behaviour.Damage(behaviour.currentHealth, behaviour);
+                friend.OnIDied += () =>
+                {
+                    if (behaviour.currentHealth <= 0) return;
+                    behaviour.Damage(behaviour.currentHealth, behaviour);
+                };
         }
     }
 }

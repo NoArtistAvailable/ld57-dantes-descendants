@@ -60,6 +60,7 @@ namespace LD57
         public override string Name => "Mocking Laugh";
         public override string Description => $"Enemies take {damageIncrease*100}% more damage every {cooldown}s";
         public override float cooldown => 3.5f;
+        public override string animName => "Buff";
         
         public float damageIncrease = 0.15f;
         
