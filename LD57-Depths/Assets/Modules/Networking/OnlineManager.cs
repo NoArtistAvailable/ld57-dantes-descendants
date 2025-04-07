@@ -155,7 +155,7 @@ namespace LD57
 		public static async void PostSquadAsync(List<Unit> runtimeData, int circle)
 		{
 			var dataObject = ToData(runtimeData, DateToScore());
-			string url = $"{serverUrl}/highscores/{gameName}-circle-{circle}";
+			string url = $"{serverUrl}/highscores/{gameName}v2-circle-{circle}";
 
 			// Convert the data object to JSON
 			string json = JsonUtility.ToJson(dataObject);
@@ -180,7 +180,7 @@ namespace LD57
 		
 		public static async void GetCircleAsync(int circle)
 		{
-			string url = $"{serverUrl}/allhighscores/{gameName}-circle-{circle}";
+			string url = $"{serverUrl}/allhighscores/{gameName}v2-circle-{circle}";
 			
 			UnityWebRequest request = UnityWebRequest.Get(url);
 			var operation = request.SendWebRequest();

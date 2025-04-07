@@ -18,6 +18,7 @@ namespace LD57
 	{
 		public abstract float cooldown { get; }
 		public abstract void Activate(UnitCombatBehaviour unitCombatBehaviour);
+		public virtual string animName { get; } = "Attack";
 	}
 	
 	public static class CardManager

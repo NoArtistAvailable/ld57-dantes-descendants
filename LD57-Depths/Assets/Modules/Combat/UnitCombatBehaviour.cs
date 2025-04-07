@@ -17,7 +17,8 @@ namespace LD57
         public static event Action<UnitCombatBehaviour> OnShowCombatUnit;
         public static event Action<UnitCombatBehaviour> OnDeath;
         public static event Action<UnitCombatBehaviour, float> OnHurt, OnHeal;
-        public event Action<float> OnIGotHurt, OnIGotHeal;
+        public event Action<float, UnitCombatBehaviour> OnIGotHurt, OnIGotHeal;
+        public event Action OnIDied;
         public event Action<UnitCombatBehaviour, ActiveCard> OnCardActivated;
         public event Action OnCrit;
         public Unit Unit { get; set; }
@@ -93,7 +94,7 @@ namespace LD57
         public SpriteAnimator animator;
         public CustomizationBehaviour customization;
         private AudioSource voice;
-        private Unity.Mathematics.Random random;
+        public Unity.Mathematics.Random random;
         
         public void Init(Unit unit)
         {
@@ -139,14 +140,14 @@ namespace LD57
                 NextActiveCard.Activate(this);
                 OnCardActivated?.Invoke(this, NextActiveCard);
                 chargeTime = 0;
-                PlayAnimation("Attack", 0.6f);
+                PlayAnimation(NextActiveCard.animName, 0.6f);
                 GetNextAbilityCard();
                 voice.clip = AudioLibrary.GetSwear();
                 voice.Play();
             }
         }
 
-        public void Damage(float damage)
+        public void Damage(float damage, UnitCombatBehaviour source)
         {
             damage *= ReceiveDamageCalc;
             currentHealth -= damage;
@@ -154,15 +155,15 @@ namespace LD57
             else
             {
                 PlayAnimation("Hurt", 0.36f);
-                OnIGotHurt?.Invoke(damage);
+                OnIGotHurt?.Invoke(damage, source);
                 OnHurt?.Invoke(this, damage);
             }
         }
-        public void Heal(float value)
+        public void Heal(float value, UnitCombatBehaviour source)
         {
             if (currentHealth <= 0) return;
             currentHealth += value;
-            OnIGotHeal?.Invoke(value);
+            OnIGotHeal?.Invoke(value, source);
             OnHeal?.Invoke(this, value);
         }
 
@@ -173,6 +174,7 @@ namespace LD57
             animationCancel = null;
             animator.Play("Dead");
             OnDeath?.Invoke(this);
+            OnIDied?.Invoke();
         }
 
         private CancellationTokenSource animationCancel;
