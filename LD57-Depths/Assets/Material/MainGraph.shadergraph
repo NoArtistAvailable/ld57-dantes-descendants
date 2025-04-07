@@ -16,6 +16,15 @@
     "m_Keywords": [
         {
             "m_Id": "efdde19cac7a4679b4547608b0aeb96b"
+        },
+        {
+            "m_Id": "07fe55606470403f8fd36edd6f78354d"
+        },
+        {
+            "m_Id": "3c666785fe304f538fe0116d0408adc9"
+        },
+        {
+            "m_Id": "54cc323a5d6e46d09d743a8b414918a5"
         }
     ],
     "m_Dropdowns": [],
@@ -231,20 +240,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "6a54157032364e1f9fe2f5774050c26a"
-                },
-                "m_SlotId": 1
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "dea81ba863944a0b8f2af2e79129309f"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "700f80a750d84b1cbcd5ebf4bb49b85d"
                 },
                 "m_SlotId": 2
@@ -364,6 +359,20 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "c72e1af0a9aa4ea68a081368646bef90"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "de6a2756e12e44199b6bec59dfa34c11"
+                },
+                "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "dea81ba863944a0b8f2af2e79129309f"
                 },
                 "m_SlotId": 0
             }
@@ -502,6 +511,31 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "07fe55606470403f8fd36edd6f78354d",
+    "m_Guid": {
+        "m_GuidSerialized": "da3ffa5c-ad1c-4988-8ea4-b40425455cbb"
+    },
+    "m_Name": "MAIN_LIGHT_SHADOWS",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "MAIN_LIGHT_SHADOWS",
+    "m_DefaultReferenceName": "_MAIN_LIGHT_SHADOWS",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 2,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
 }
 
 {
@@ -1153,6 +1187,31 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "3c666785fe304f538fe0116d0408adc9",
+    "m_Guid": {
+        "m_GuidSerialized": "21bffaaa-4131-44c6-90d0-21a486b44deb"
+    },
+    "m_Name": "MAIN_LIGHT_SHADOWS_CASCADE",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "MAIN_LIGHT_SHADOWS_CASCADE",
+    "m_DefaultReferenceName": "_MAIN_LIGHT_SHADOWS_CASCADE",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 2,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "3f18c3df96004a13a105676d166e17d9",
@@ -1415,6 +1474,31 @@
         "w": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "54cc323a5d6e46d09d743a8b414918a5",
+    "m_Guid": {
+        "m_GuidSerialized": "6bfc7e42-5062-4218-ad1c-007d8f8b98cb"
+    },
+    "m_Name": "SHADOWS_SOFT",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "SHADOWS_SOFT",
+    "m_DefaultReferenceName": "_SHADOWS_SOFT",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 2,
+    "m_KeywordScope": 0,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
 }
 
 {
@@ -2723,8 +2807,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -783.9999389648438,
-            "y": 843.0,
+            "x": -797.0,
+            "y": 844.0,
             "width": 276.0,
             "height": 278.0
         }
@@ -2856,6 +2940,15 @@
         },
         {
             "m_Id": "efdde19cac7a4679b4547608b0aeb96b"
+        },
+        {
+            "m_Id": "07fe55606470403f8fd36edd6f78354d"
+        },
+        {
+            "m_Id": "3c666785fe304f538fe0116d0408adc9"
+        },
+        {
+            "m_Id": "54cc323a5d6e46d09d743a8b414918a5"
         }
     ]
 }
