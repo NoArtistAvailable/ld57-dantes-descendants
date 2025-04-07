@@ -53,5 +53,13 @@ namespace LD57
 			
 			anim.PlayAt(1);
 		}
+
+		public async void Close()
+		{
+			toShow = null;
+			await anim.Play(0);
+			if (toShow != null) return;
+			cardContentParent.ClearChildren();
+		}
 	}
 }

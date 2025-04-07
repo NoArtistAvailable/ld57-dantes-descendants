@@ -84,14 +84,28 @@ namespace LD57
 
 		public void EndCombat()
 		{
+			Active = false;
 			if (PlayerManager.instance.squad == null || PlayerManager.instance.squad.Count == 0)
 			{
 				PlayerManager.instance.squad = setPlayerSquad;
 				PlayerManager.instance.playerUnit = setPlayerSquad[0];
 			}
+
+			if (PlayerManager.instance.circleOfHell == 8)
+			{
+				GameOverScreen.CallGameWon();
+				return;
+			}
+
+			if (PlayerManager.instance.Lives == 0)
+			{
+				GameOverScreen.CallGameOver();
+				return;
+			}
+			
 			PlayerManager.instance.circleOfHell++;
 			endButton.GetComponent<Animatable>().PlayAt(1);
-			Active = false;
+			
 		}
 		
 		public void InitCombat()

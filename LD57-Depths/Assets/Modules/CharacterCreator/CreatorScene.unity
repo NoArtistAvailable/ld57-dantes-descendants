@@ -546,7 +546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.4999962}
+  m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: -20, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &428103095
@@ -709,7 +709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7611862044636939549, guid: 54b5e997d346eb246972895991ba36b8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7611862044636939549, guid: 54b5e997d346eb246972895991ba36b8, type: 3}
       propertyPath: m_AnchorMin.x
@@ -717,7 +717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7611862044636939549, guid: 54b5e997d346eb246972895991ba36b8, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7611862044636939549, guid: 54b5e997d346eb246972895991ba36b8, type: 3}
       propertyPath: m_SizeDelta.x
@@ -761,7 +761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7611862044636939549, guid: 54b5e997d346eb246972895991ba36b8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -242.80699
+      value: 57.19301
       objectReference: {fileID: 0}
     - target: {fileID: 7611862044636939549, guid: 54b5e997d346eb246972895991ba36b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2398,10 +2398,10 @@ RectTransform:
   - {fileID: 428103094}
   m_Father: {fileID: 1805527345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 219}
-  m_SizeDelta: {x: 398.3367, y: 66.5483}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -81}
+  m_SizeDelta: {x: 398.3367, y: 66.54831}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &965166136
 MonoBehaviour:
@@ -3475,6 +3475,7 @@ MonoBehaviour:
   painter: {fileID: 76778151}
   nameInput: {fileID: 965166136}
   exitButton: {fileID: 625129380}
+  dontUpload: 0
 --- !u!4 &1805421833
 Transform:
   m_ObjectHideFlags: 0
@@ -3538,7 +3539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -3883,7 +3884,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -19.800812, y: 79}
+  m_AnchoredPosition: {x: -19.800781, y: 79}
   m_SizeDelta: {x: 156.1089, y: 198.2348}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &2032873748
